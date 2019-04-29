@@ -1,6 +1,10 @@
 <template>
-  <div class="hello">
-    <h1>employer Page</h1>
+  <div class="component">
+    <h5>Your Maximum Salary Budget</h5>
+    <div>
+      <input v-model.trim="employerInput" class="input" type="number">
+      <button @click.prevent="employerBudget">Submit</button>
+    </div>
   </div>
 </template>
 
@@ -8,7 +12,14 @@
 export default {
   name: 'employer',
   data () {
-    return {}
+    return {
+      employerInput: null
+    }
+  },
+  methods: {
+    employerBudget () {
+      console.log('Submitted')
+    }
   }
 }
 </script>

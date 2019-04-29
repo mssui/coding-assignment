@@ -1,6 +1,10 @@
 <template>
-  <div class="hello">
-    <h1>employee Page</h1>
+  <div class="component">
+    <h5>Your Minimum Salary Expectation</h5>
+    <div>
+      <input v-model.trim="employeeInput" class="input" type="number">
+      <button @click.prevent="employeeSalary">Submit</button>
+    </div>
   </div>
 </template>
 
@@ -8,7 +12,14 @@
 export default {
   name: 'employee',
   data () {
-    return {}
+    return {
+      employeeInput: null
+    }
+  },
+  methods: {
+    employeeSalary () {
+      console.log('Submitted')
+    }
   }
 }
 </script>
