@@ -1,7 +1,8 @@
 <template>
   <div class="component">
+    <h4 v-if="msgBeforeInput">{{msgBeforeInput}}</h4>
     <h5>Your Minimum Salary Expectation</h5>
-    {{employeeInput}}
+    <h4>{{msgAfterInput}}</h4>
     <div class="btn-input" :class="{ hidden: isEmployeeHidden }">
       <input v-model.trim="employeeInput" class="input" type="number">
       <button class="btn" @click.prevent="employeeSalary">Submit</button>
@@ -15,12 +16,18 @@ export default {
   data () {
     return {
       employeeInput: null,
-      isEmployeeHidden: false
+      isEmployeeHidden: false,
+      msgBeforeInput: 'Please enter',
+      msgAfterInput: null
     }
   },
   methods: {
     employeeSalary () {
       this.isEmployeeHidden = true
+
+      this.msgBeforeInput = null
+      this.msgAfterInput = this.employeeInput
+
       this.$emit('setSalary', {
         employeeInput: this.employeeInput
       })
