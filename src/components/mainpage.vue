@@ -14,7 +14,7 @@
       >Employer</span>
     </div>
     <keep-alive>
-      <component :is="activeComponent"/>
+      <component :is="activeComponent" v-on:setSalary="setDataemp($event)"/>
     </keep-alive>
   </div>
 </template>
@@ -27,6 +27,8 @@ export default {
   name: 'mainpage',
   data () {
     return {
+      employeeInput: null,
+      employerInput: null,
       activeComponent: 'employee',
       isActive: true
     }
@@ -35,6 +37,12 @@ export default {
   methods: {
     toggle: function () {
       this.isActive = !this.isActive
+    },
+    setDataemp: function (data) {
+      console.log(data)
+    },
+    calculate () {
+      // calculate the data for succsess or failure
     }
   }
 }

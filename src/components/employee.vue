@@ -18,7 +18,9 @@ export default {
   },
   methods: {
     employeeSalary () {
-      console.log('Submitted')
+      this.$emit('setSalary', {
+        employeeInput: this.employeeInput
+      })
     }
   }
 }
