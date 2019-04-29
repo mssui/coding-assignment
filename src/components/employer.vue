@@ -3,7 +3,7 @@
     <h5>Your Maximum Salary Budget</h5>
     <div>
       <input v-model.trim="employerInput" class="input" type="number">
-      <button @click.prevent="employerBudget">Submit</button>
+      <button class="btn" @click.prevent="employerBudget">Submit</button>
     </div>
   </div>
 </template>

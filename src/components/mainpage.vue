@@ -18,7 +18,6 @@
     </keep-alive>
     <div class="modal" :class="{ hidden: modalHide }">
       <div class="close-modal" @click.prevent="closeModal">X</div>
-
       <h1 class="modal-text">{{ msg }}</h1>
     </div>
   </div>
@@ -51,7 +50,7 @@ export default {
       } else if (activeComponent === 'employer') {
         this.employerInput = data.employerInput
       }
-
+      // if both input are true, run calculate
       if (this.employeeInput && this.employerInput) {
         this.calculate()
       }
