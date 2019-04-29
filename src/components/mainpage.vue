@@ -58,15 +58,15 @@ export default {
     calculate: function (employeeInput, employerInput) {
       // calculate the data for succsess or failure
       if (this.employeeInput <= this.employerInput) {
-        console.log('success!')
+        this.modalHide = !this.modalHide
         this.msg = 'success!';
       } else {
-        console.log('Failure! Another condition')
+        this.modalHide = !this.modalHide
         this.msg = 'Failure!';
       }
     },
     closeModal: function () {
-      // close modal
+      this.modalHide = true
     }
   }
 }
