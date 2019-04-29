@@ -1,16 +1,16 @@
 <template>
   <div class="hello">
-    <h1>Main Page</h1>
+    <h1>Salary Negotiation</h1>
     <div class="tab">
       <span
         class="item"
         :class="{ active: isActive }"
-        @click.prevent="activeComponent = 'employee'"
+        @click.prevent="activeComponent = 'employee'; toggle();"
       >Employee</span>
       <span
         class="item"
         :class="{ active: !isActive }"
-        @click.prevent="activeComponent = 'employer'"
+        @click.prevent="activeComponent = 'employer'; toggle();"
       >Employer</span>
     </div>
     <keep-alive>
@@ -31,7 +31,12 @@ export default {
       isActive: true
     }
   },
-  components: { employee, employer }
+  components: { employee, employer },
+  methods: {
+    toggle: function () {
+      this.isActive = !this.isActive
+    }
+  }
 }
 </script>
 
