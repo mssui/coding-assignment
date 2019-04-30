@@ -19,6 +19,10 @@
     <div class="modal" :class="{ hidden: modalHide }">
       <div class="close-modal" @click.prevent="closeModal">X</div>
       <h1 class="modal-text">{{ msg }}</h1>
+      <div class="weather">
+        <h4>Temp. in {{ city }} : {{ temp }} °C</h4>
+        <img :src="'http://openweathermap.org/img/w/' + icon + '.png'">
+      </div>
     </div>
   </div>
 </template>
@@ -26,6 +30,7 @@
 <script>
 import employee from './employee.vue';
 import employer from './employer.vue';
+import axios from 'axios';
 
 export default {
   name: 'mainpage',
@@ -36,7 +41,10 @@ export default {
       activeComponent: 'employee',
       isActive: true,
       modalHide: true,
-      msg: null
+      msg: null,
+      temp: null,
+      city: null,
+      icon: null
     }
   },
   components: { employee, employer },
@@ -55,7 +63,19 @@ export default {
         this.calculate()
       }
     },
+
     calculate: function (employeeInput, employerInput) {
+      axios
+        .get(
+          'https://api.openweathermap.org/data/2.5/find?q=London&units=metric&APPID=09086ba8a725d7121ab42507bf1de6ec'
+        )
+        .then(res => {
+          console.log(res.data)
+          this.city = res.data.list[0].name
+          this.temp = res.data.list[0].main.temp
+          this.icon = res.data.list[0].weather[0].icon
+        })
+
       // calculate the data for succsess or failure
       if (this.employeeInput <= this.employerInput) {
         this.modalHide = !this.modalHide
@@ -65,6 +85,7 @@ export default {
         this.msg = 'Failure!';
       }
     },
+
     closeModal: function () {
       this.modalHide = true
     }
